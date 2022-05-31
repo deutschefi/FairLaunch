@@ -181,7 +181,7 @@ contract FairLaunch {
     uint256 public decimals = 10**18;
     uint256 public minBuy = 10 * decimals;
     uint256 public maxBuy = 3000 * decimals;
-    uint256 public goal = 100000 * decimals;
+    uint256 public goal = 300000 * decimals;
     uint256 public totalRaised;
 
     bool public hasEnded = false;
