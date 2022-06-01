@@ -1,1 +1,1 @@
-# FairLaunch
+# FairLaunch Contract - Solidity
