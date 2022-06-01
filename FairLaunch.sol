@@ -170,7 +170,7 @@ contract FairLaunch {
 
     address token;
     address busdToken = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
-    address owner = 0x019ba6d1575f3Be34b9C1DD5F943FB8F20D31328;
+    address owner = 0x6aAF9b7E170b7bAA6a75EB2C3D63d1cc397690e0;
     address payable public liquidityReceiver =
         payable(0x4Acc87922b9768De2e6388E2D06697F1AE362971);
     address payable public treasury =
@@ -266,8 +266,14 @@ contract FairLaunch {
     }
 
     function _forwardFunds() internal {
-        liquidityReceiver.transfer(msg.value.mul(70).div(100));
-        treasury.transfer(msg.value.mul(30).div(100));
+        (bool success, ) = liquidityReceiver.call{
+            value: msg.value.mul(70).div(100),
+            gas: 30000
+        }("");
+        (success, ) = treasury.call{
+            value: msg.value.mul(30).div(100),
+            gas: 30000
+        }("");
     }
 
     function _forwardBusd(uint256 _busdAmount) internal {
